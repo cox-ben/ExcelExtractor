@@ -38,8 +38,8 @@ class CLIArgumentParser(argparse.ArgumentParser):
 def build_parser() -> CLIArgumentParser:
     """Constructs and returns the CLI argument parser."""
     parser = CLIArgumentParser(
-        prog="cli.py",
-        description="Batch Quote Extractor CLI - parse legacy Excel quotes to structured JSON and CSV.",
+        prog="ExcelExtractor",
+        description="ExcelExtractor (Batch Quote Extractor CLI) - parse legacy Excel quotes to structured JSON and CSV.",
         add_help=True,
     )
 

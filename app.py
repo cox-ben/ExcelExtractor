@@ -70,7 +70,7 @@ def render_footer() -> None:
     st.markdown("---")
     col_info, col_ver = st.columns([7, 3])
     with col_info:
-        st.caption("Molded Precision Components (MPC) • Legacy Quote Variable Extractor & Linker")
+        st.caption("Molded Precision Components (MPC) • ExcelExtractor & Linker")
     with col_ver:
         st.caption(f"**Version**: `{APP_VERSION}` ({BUILD_DATE})")
 
@@ -78,11 +78,11 @@ def render_footer() -> None:
 def initialize_page() -> None:
     """Set Streamlit page configuration and title banner."""
     st.set_page_config(
-        page_title=f"Legacy Quote Variable Extractor ({APP_VERSION})",
+        page_title=f"ExcelExtractor ({APP_VERSION})",
         layout="wide",
         initial_sidebar_state="expanded",
     )
-    st.title("Legacy Quote Variable Extractor")
+    st.title("ExcelExtractor - Legacy Quote Variable Extractor")
 
 
 
