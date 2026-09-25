@@ -70,7 +70,7 @@ def render_footer() -> None:
     st.markdown("---")
     col_info, col_ver = st.columns([7, 3])
     with col_info:
-        st.caption("Molded Precision Components (MPC) • ExcelExtractor & Linker")
+        st.caption("ExcelExtractor • Quote Variable Extractor & Linker")
     with col_ver:
         st.caption(f"**Version**: `{APP_VERSION}` ({BUILD_DATE})")
 
