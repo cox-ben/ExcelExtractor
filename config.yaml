@@ -1,0 +1,190 @@
+# config.yaml - Excel Quote Extractor Configuration
+version: "1.0"
+
+extraction:
+  quote_id:
+    patterns:
+      - "\\b(Q[0-9]{4,5})\\b"
+    item_patterns:
+      - "\\b(Q[0-9]{4,5}-[0-9]+)\\b"
+    anchors:
+      - "quote #"
+      - "quote number"
+      - "quote id"
+      - "quote no"
+      - "quote no."
+      - "rfq #"
+      - "quote ref"
+    search_offsets:
+      - [0, 1]
+      - [0, 2]
+      - [1, 0]
+
+  anchors:
+    part_number:
+      keywords:
+        - "part number"
+        - "part no"
+        - "part #"
+        - "p/n"
+        - "customer part"
+        - "customer p/n"
+      search_offsets:
+        - [0, 1]
+        - [0, 2]
+        - [1, 0]
+      clean_patterns:
+        - "(?i)dwg\\s*#?:?.*"
+        - "(?i)drawing.*"
+
+    cycle_time:
+      keywords:
+        - "cycle time"
+        - "cycle time (sec)"
+        - "cycle time (s)"
+        - "cycle sec"
+        - "c/t"
+        - "sec/shot"
+        - "molding cycle"
+        - "cycle (sec)"
+        - "est cycle time"
+      search_offsets:
+        - [0, 1]
+        - [0, 2]
+        - [1, 0]
+
+    description:
+      keywords:
+        - "part description"
+        - "part desc"
+        - "part desc."
+        - "part discription"
+        - "description"
+        - "discription"
+        - "desc"
+        - "desc."
+      search_offsets:
+        - [0, 1]
+        - [0, 2]
+        - [1, 0]
+
+    material:
+      keywords:
+        - "resin grade"
+        - "material grade"
+        - "grade"
+        - "material"
+        - "resin"
+        - "material description"
+        - "raw material"
+      search_offsets:
+        - [0, 1]
+        - [0, 2]
+        - [1, 0]
+
+    ops_labour:
+      keywords:
+        - "#ops"
+        - "# ops"
+        - "ops"
+        - "labour"
+        - "labor"
+        - "operators"
+        - "operator"
+        - "# operators"
+      search_offsets:
+        - [0, 1]
+        - [0, 2]
+        - [1, 0]
+
+    labour_rate:
+      keywords:
+        - "rate $cad/hr"
+        - "rate cad/hr"
+        - "rate $/hr"
+        - "rate $cad / hr"
+        - "$cad/hr"
+        - "cad/hr"
+        - "labour rate"
+        - "labor rate"
+      search_offsets:
+        - [1, 0]
+        - [2, 0]
+
+    weight_g:
+      keywords:
+        - "weight (g)"
+        - "weight(g)"
+        - "part weight (g)"
+        - "part wt (g)"
+        - "part weight"
+        - "weight"
+        - "wt (g)"
+      search_offsets:
+        - [0, 1]
+        - [0, 2]
+        - [1, 0]
+
+    annual_volume:
+      keywords:
+        - "ann. volume (eau)"
+        - "ann. volume"
+        - "annual volume (eau)"
+        - "annual volume"
+        - "volume (eau)"
+        - "volume"
+        - "eau"
+        - "ann volume"
+      search_offsets:
+        - [0, 1]
+        - [0, 2]
+        - [1, 0]
+
+  bounds:
+    cycle_time_sec:
+      min: 5.0
+      max: 300.0
+    ops_labour:
+      min: 0.0
+      max: 1.0
+
+  sheets:
+    ignore:
+      - "summary"
+      - "cover"
+      - "toc"
+      - "terms"
+      - "notes"
+      - "lookup"
+      - "instructions"
+      - "data"
+      - "master"
+      - "template"
+      - "job values vs quote"
+    target_keywords:
+      - "mpc"
+      - "qinfo"
+      - "quote info"
+      - "quoteinfo"
+      - "q-info"
+      - "quote_info"
+    target_patterns:
+      - "(?i)\\bmpc\\b"
+      - "(?i)^mpc.*"
+      - "(?i)\\bq[-_ ]?info\\b"
+      - "(?i)\\bquote[-_ ]?info\\b"
+      - "(?i)\\bquoteinfo\\b"
+      - "(?i)\\bQ[0-9]{4,5}(?:-[0-9]+)?\\b"
+      - "(?i)\\b(?:item|part)[-_ ]?[0-9]+\\b"
+
+  grid_matrix:
+    enabled: true
+    header_max_row: 100
+    stop_keywords:
+      - "total"
+      - "subtotal"
+      - "notes"
+      - "approved"
+      - "revision"
+      - "revisions"
+      - "quote revision"
